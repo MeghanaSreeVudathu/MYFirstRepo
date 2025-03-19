@@ -1,0 +1,16 @@
+#!/bin/bash
+
+USERS=("$@")
+for i in ${USERS[@]}
+do 
+XUSER=`cat /etc/passwd | grep -i $i | cut -d ":" -f1`
+
+if [[ $XUSER == $i ]]
+then
+echo "user already there matcha!"
+else
+useradd -m $i
+echo "idhigoo usseruuu :"$i
+fi
+done
+
