@@ -1,0 +1,16 @@
+#!/bin/bash
+
+USERS=("$@")
+for i in ${USERS[@]}
+do 
+XUSER=`cat /etc/passwd | grep -i $i |cut -d ":" -f1`
+
+if [[ $i == $XUSER ]]
+then
+echo "user exits"
+else 
+useradd -m $i
+echo "user added"
+echo $i
+fi
+done
