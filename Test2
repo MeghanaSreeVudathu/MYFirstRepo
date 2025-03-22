@@ -1,16 +1,19 @@
 #!/bin/bash
 
-USERS=("$@")
-for i in ${USERS[@]}
-do 
-XUSER=`cat /etc/passwd | grep -i $i | cut -d ":" -f1`
+read -p "would you like to create a user?" YN
+while [[ $YN == "yes" ]]
+do
+read -p "give the preferred username" MYUSER
+XUSER=`cat /etc/passwd | grep -i $MYUSER | cut -d ":" -f1`
 
-if [[ $XUSER == $i ]]
+if [[ $XUSER == $MYUSER ]]
 then
 echo "user already there matcha!"
 else
-useradd -m $i
-echo "idhigoo usseruuu :"$i
+useradd -m $MYUSER
+echo "idhigoo usseruuu :"$MYUSER
 fi
+read -p "would you  like to create another user?" YN
+echo "you just opted out, end of loop"
 done
 
